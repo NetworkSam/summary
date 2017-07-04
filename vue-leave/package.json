@@ -1,0 +1,16 @@
+{
+  "name": "vue-leave",
+  "version": "1.0.0",
+  "description": "vue leave learn",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vue",
+    "leave",
+    "learn"
+  ],
+  "author": "samuelcheng",
+  "license": "ISC"
+}
