@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VUE实现购物车</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+
+<div id="app">
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <caption class="h4 text-danger">购物车</caption>
+                    <tr>
+                        <th class="text-center">商品名称</th>
+                        <th class="text-center">商品价格</th>
+                        <th class="text-center">操作</th>
+                    </tr>
+
+                    <tr class="text-center" v-for="(iphone,index) in iphones">
+                        <td>{{iphone.name}}</td>
+                        <td>{{iphone.price}}</td>
+                        <td>
+                            <button @click="removeOne(index)" class="btn btn-danger btn-sm">删除</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="3" v-if="iphones.length">
+                            <button @click="removeAll()" class="btn btn-danger pull-right">删除全部</button>
+                        </td>
+                    </tr>
+                </table>
+
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="productName" class="control-label">商品名称</label>
+                            <input v-model="goodsName" placeholder="请输入商品名称" type="text" id="productName" class="form-control">
+                            <label for="productPrice" class="control-label">商品名称</label>
+                            <input v-model="goodsPrice" placeholder="请输入商品价格" type="text" id="productPrice" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <button @click="addGoods()" type="button" class="btn btn-info">添加</button>
+                            <button @click="reset()" type="reset" class="btn btn-warning">重置</button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="vue.2.0.js"></script>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                iphones:[
+                    {
+                        name: 'iphone5',
+                        price: '2800'
+                    },
+                    {
+                        name: 'iphone6',
+                        price: '3800'
+                    },
+                    {
+                        name: 'iphone7',
+                        price: '6100'
+                    }
+                ],
+                goodsName: '',
+                goodsPrice: ''
+            },
+            methods: {
+                removeOne: function(productId){
+                    //返回false就过滤掉
+                    this.iphones = this.iphones.filter(function (item, index) {
+                        return index != productId;
+                    });
+                },
+                removeAll: function () {
+                    this.iphones = [];
+                },
+                reset: function () {
+                    this.goodsName = '';
+                    this.goodsPrice= '';
+                },
+                addGoods: function () {
+                    var obj = {
+                        name: this.goodsName,
+                        price: this.goodsPrice
+                    };
+                    if(this.goodsPrice == '' || this.goodsName == '')return;
+
+                    this.iphones.push(obj);
+
+                    this.reset();
+                }
+            }
+        })
+    </script>
+    </body>
+    </html>
