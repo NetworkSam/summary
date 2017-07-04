@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue组件</title>
+</head>
+<body>
+
+<div id="app">
+ <!--<hello></hello>-->
+    <parent></parent>
+</div>
+
+<template id="tmp">
+    <div>
+        <h3>parent</h3>
+        {{age}}
+        <child @s="p" :name="name"></child>
+    </div>
+</template>
+<script src="vue.2.0.js"></script>
+<script>
+    //组件 就近维护 全局组件 局部组件
+     //定义组件
+//    var et = Vue.extend({
+//        template: '<h1>Hello World!!!</h1>'
+//    });
+//    注册组件
+//    Vue.component('hello', et);
+
+    //全局组件
+//    Vue.component('hello',{
+//        template: '<h1>{{msg}} World!!!</h1>',
+//        //在组件中个,data是一个函数，返回的值是我们的数据
+//        data: function () {
+//            return {
+//                msg: 'Hello1'
+//            }
+//        }
+//    });
+
+    var vm = new Vue({
+        el: '#app',
+        //局部组件
+        components:{
+            hello:{
+                template: '<h1>Hello {{msg}}</h1>',
+                data: function () {
+                    return {
+                        msg: 'samuel'
+                    }
+                }
+            },
+            parent: {
+                template: '#tmp',
+                data: function () {
+                    return {
+                        name: '213213',
+                        age: 0
+                    }
+                },
+                methods: {
+                    p: function (data) {
+                        this.age = data;
+                    }
+                },
+                components: {
+                    child: {
+                        template: '<div @click="sayAge()">child {{name}}</div>',
+                        props: {
+                            name: String
+                        },
+                        data: function () {
+                            return {
+                                age: 18
+                            }
+                        },
+                        methods: {
+                            sayAge: function () {
+                                //向上发射事件 emit
+                                this.$emit('s',this.age);
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        data:{
+            name: 'samuel'
+        }
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
