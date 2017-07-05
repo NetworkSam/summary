@@ -11,7 +11,7 @@ module.exports = {
         loaders:[
             {
                 test: /\.js$/,
-                loaders:'babel-loader',
+                loader:'babel-loader',
                 exclude:/node_modules/
             },
             {
@@ -21,7 +21,7 @@ module.exports = {
             },
             {
                 test: /\.vue$/,
-                loaders:'vue-loader'
+                loader:'vue-loader'
             }
         ]
     },

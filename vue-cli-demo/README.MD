@@ -1,7 +1,7 @@
 ## webpack
 
 ```
-npm install webpacl webpack-dev-server --save-dev
+npm install webpack webpack-dev-server --save-dev
 ```
 
 ```
@@ -9,7 +9,7 @@ npm install vue-loader vue-template-compiler --save-dev
 ```
 
 ```
-npm install vue-router --save
+npm install vue vue-router --save
 ```
 
 ## babel
@@ -24,6 +24,13 @@ npm install style-loader css-loader --save-dev
 ```
 npm install html-webpack-plugin --save-dev
 ```
+
+## 额外安装一个插件 babel-preset-stage-0 支持...App写法
+
+```
+npm install babel-preset-stage-0 --save-dev
+```
+
 
 
 
