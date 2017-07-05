@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue router2.0学习</title>
+    <style>
+        .router-link-active{
+            color: #8a6d3b;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <router-link to="/home">首页</router-link>
+    <router-link to="/list">列表</router-link>
+    <router-view></router-view>
+</div>
+
+
+<template id="home">
+    <div>
+        <h1>Home</h1>
+        <router-link to="/home/login">登录</router-link>
+        <router-link to="/home/reg">注册</router-link>
+        <router-view></router-view>
+    </div>
+</template>
+
+<template id="list">
+    <div>
+        <h1>List</h1>
+        <router-link to="/list/news/1">消息1</router-link>
+        <router-link to="/list/news/2">消息2</router-link>
+        <router-view></router-view>
+    </div>
+</template>
+
+
+<script src="vue.2.0.js"></script>
+<script src="vue-router.2.2.0.js"></script>
+
+<script>
+//    var Home = {template: '<div><h1>Home</h1></div>'};
+//      var List = {template: '<h1>List</h1>'};
+
+    var router = new VueRouter({
+        routes:[
+            {
+                path: '/home',
+                component:{
+                    template: '#home'
+                },
+                children: [
+                    {
+                        path:'login',
+                        component: {
+                            template: '<p>login</p>'
+                        }
+                    },
+                    {
+                        path:'reg',
+                        component: {
+                            template: '<p>reg</p>'
+                        }
+                    }
+                ]
+            },
+            {
+                path: '/list',
+                component:{
+                    template: '#list'
+                },
+                children:[
+                    {
+                        path:'news/:id',
+                        component: {
+                            template: '<p>list {{$route.params.id}}</p>'
+                        },
+                        beforeEnter:function (to, from, next) {
+                            console.log(to.params.id);
+                            next();
+                        }
+                    }
+                ]
+            },
+            {
+                path: '*',
+                component: {
+                    template: '#home'
+                }
+            }
+        ]
+    });
+
+    var vm = new Vue({
+        el: '#app',
+        router: router
+    });
+
+</script>
+
+</body>
+</html>

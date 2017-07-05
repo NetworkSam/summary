@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-router学习</title>
+</head>
+<body>
+<div id="app">
+    <a v-link="{path:'/home'}">首页</a>
+    <a v-link="{path:'/list'}">列表</a>
+    <router-view></router-view>
+</div>
+
+<template id="home">
+    <h1>home</h1>
+    <a v-link="{path: '/home/login'}">登录</a>
+    <a v-link="{path: '/home/reg'}">注册</a>
+    <router-view></router-view>
+</template>
+
+<template id="list">
+    <h1>list</h1>
+    <a v-link="{path: '/list/news/1'}">消息1</a>
+    <a v-link="{path: '/list/news/2'}">消息2</a>
+    <router-view></router-view>
+</template>
+<script src="vue.1.0.js"></script>
+<script src="vue-router.1.0.js"></script>
+<script>
+    var App = {};
+
+    var router = new VueRouter;
+
+    router.map({
+        '/home':{
+            component:{
+                template: '#home'
+            },
+            subRoutes: {
+                '/login':{
+                    component:{
+                        template: 'login'
+                    }
+                },
+                '/reg':{
+                    component: {
+                        template: 'reg'
+                    }
+                }
+            }
+        },
+        '/list':{
+            component:{
+                template: "#list"
+            },
+            subRoutes: {
+                '/news/:id': {
+                    component:{
+                        template: '<div>info{{$route.params.id}}{{$route.query | json}}<br/>{{$route.path}}</div>',
+                        route: {
+                            data: function (transition) {
+                                //console.log(transition);
+                                console.log(this.$route.params.id);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    router.start(App, '#app');
+    router.redirect({
+        '/': 'home'
+    });
+
+
+</script>
+</body>
+</html>
