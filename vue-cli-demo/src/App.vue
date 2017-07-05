@@ -15,6 +15,9 @@
     export default {
         components:{
             Home
+        },
+        mounted(){
+//            this.$http.get('/hello');
         }
     }
 </script>

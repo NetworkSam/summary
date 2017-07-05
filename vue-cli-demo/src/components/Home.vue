@@ -18,13 +18,15 @@
         <h1>小时候贼叼...</h1>
         <!--<router-link to="/home">路由一</router-link>-->
         <!--<router-link to="/home1">路由二</router-link>-->
-        <Nav></Nav>
-        <router-view></router-view>
+        <Navs></Navs>
+
+        <samuel-button>点我啊</samuel-button>
+
     </div>
 </template>
 
 <script>
-    import Nav from './nav.vue';
+    import Navs from './nav.vue';
 
     export default {
         data (){
@@ -33,7 +35,7 @@
             }
         },
         components:{
-            Nav
+            Navs
         }
     }
 </script>
