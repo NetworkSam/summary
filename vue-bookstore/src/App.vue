@@ -1,12 +1,23 @@
 <template>
   <div id="app">
-    bookStore
+    <Navbar></Navbar>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <router-view></router-view>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
+import Navbar from '@/components/Navbar.vue'
 
+export default {
+  components:{
+    Navbar
+  }
 }
 </script>
 
