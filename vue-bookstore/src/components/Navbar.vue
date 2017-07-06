@@ -7,7 +7,7 @@
     <div class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="nvba-header">
-          <a href="" class="navbar-brand">Samuel BookStore</a>
+          <a href="javascript:;" class="navbar-brand">Samuel BookStore</a>
         </div>
         <ul class="navbar-nav nav">
           <li><router-link to="/list">图书列表</router-link></li>

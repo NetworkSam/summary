@@ -37,6 +37,12 @@ npm install babel-preset-stage-0 --save-dev
 http://www.jianshu.com/p/5838497ec56e
 ```
 
+## webpack2中文文档地址
+
+```
+http://www.css88.com/doc/webpack2/api/cli/
+```
+
 
 
 

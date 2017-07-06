@@ -10,16 +10,23 @@ export default new Router({
   mode: "history",
   routes: [
     {
-      path: '/Add',
-      component: App
-    },
-    {
       path: '/List',
       component: List
     },
     {
+      path: '/Add',
+      redirect:(to)=>{
+        console.log(to);
+        return '/List'
+      }
+    },
+    {
       path: '/Detail/:id', //this.$route.params.id
       component: Detail
+    },
+    {
+      path: '*',
+      component: List
     }
   ]
 })
