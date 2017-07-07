@@ -9,17 +9,23 @@
   <div>
     <div>
       <div class="panel panel-warning">
-        <div class="panel-heading">书名:{{book.bookName}}</div>
+        <div class="panel-heading">
+          书名:
+          <span v-show="!flag">{{book.bookName}}</span>
+          <input v-show="flag" type="text" v-model="book.bookName">
+        </div>
 
         <div class="panel-body text-center">
           <img :src="book.bookCover" alt="">
         </div>
 
         <div class="panel-footer">
-          价格:{{book.bookPrice | currency('$')}}
-          <button class="btn btn-danger" @click="remove()">删除1111</button>
-          <button class="btn btn-warning" @click="edit()">修改</button>
-          <button class="btn btn-primary" @click="submit()">确定</button>
+          价格:
+          <span v-show="!flag">{{book.bookPrice | currency('$')}}</span>
+          <input v-show="flag" type="text" v-model="book.bookPrice">
+          <button class="btn btn-danger" @click="remove()">删除</button>
+          <button class="btn btn-warning" v-show="!flag" @click="edit()">修改</button>
+          <button class="btn btn-primary" v-show="flag" @click="update()">确认修改</button>
         </div>
 
       </div>
@@ -45,10 +51,8 @@
         arr = arr.filter((item)=>{
             return item.id == index
         });
-
         this.book = arr[0];
       });
-
     },
     data(){
       return {
@@ -57,7 +61,8 @@
             bookName: '',
             bookPrice: '',
             bookCover: ''
-        }
+        },
+        flag: false //默认不修改
       }
     },
     components:{},
@@ -70,10 +75,16 @@
         })
       },
       edit(){
-
+          this.flag = true;
       },
-      submit(){
-
+      update(id){
+          //通过url传递id 数据通过请求体
+          //服务端调用res.end就会触发then中的成功的回调
+          this.id = this.$route.params.id;
+          this.$http.put('/book?id='+this.id,this.book).then((res)=>{
+              console.log(res);
+              this.flag = false;//vuesource将then中的this处理
+          });
       }
     }
   }

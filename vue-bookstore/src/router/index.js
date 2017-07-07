@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import App from '@/components/Add.vue'
+import Add from '@/components/Add.vue'
 import Detail from '@/components/Detail.vue'
 import List from '@/components/List.vue'
 
@@ -15,10 +15,7 @@ export default new Router({
     },
     {
       path: '/Add',
-      redirect:(to)=>{
-        console.log(to);
-        return '/List'
-      }
+      component: Add
     },
     {
       path: '/Detail/:id', //this.$route.params.id
