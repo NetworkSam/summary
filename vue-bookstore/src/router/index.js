@@ -18,7 +18,8 @@ export default new Router({
       component: Add
     },
     {
-      path: '/Detail/:id', //this.$route.params.id
+      path: '/detail/:id', //this.$route.params.id
+      name: 'detail',
       component: Detail
     },
     {

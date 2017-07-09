@@ -15,7 +15,8 @@
         </div>
         <div class="panel-footer">
           价格:{{book.bookPrice | currency('$')}}
-          <router-link :to="{ name:'Detail',params: book.id}">详情</router-link>
+          <!--{{book.id}}-->
+          <router-link :to="{name:'detail',params:{id:book.id}}">详情</router-link>
         </div>
       </div>
     </div>
